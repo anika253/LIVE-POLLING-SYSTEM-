@@ -6,6 +6,7 @@ import { usePollTimer } from '../hooks/usePollTimer';
 import { storage, STORAGE_KEYS } from '../utils/storage';
 import { Poll, PollState } from '../types';
 import WaitingScreen from './WaitingScreen';
+import ChatPopup from '../components/ChatPopup';
 import './PollView.css';
 
 const StudentPollView: React.FC = () => {
@@ -15,6 +16,7 @@ const StudentPollView: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [studentId, setStudentId] = useState<string | null>(null);
   const [studentName, setStudentName] = useState<string | null>(null);
+  const [showChat, setShowChat] = useState(false);
 
   const { timeLeft, start, reset, formatTime } = usePollTimer(0, () => {
     // Timer expired
@@ -205,6 +207,18 @@ const StudentPollView: React.FC = () => {
           </button>
         </div>
       )}
+
+      {/* Chat Button */}
+      <button
+        className="chat-floating-button"
+        onClick={() => setShowChat(true)}
+        title="Open Chat"
+      >
+        💬
+      </button>
+
+      {/* Chat Popup */}
+      <ChatPopup isOpen={showChat} onClose={() => setShowChat(false)} isTeacher={false} />
     </div>
   );
 };

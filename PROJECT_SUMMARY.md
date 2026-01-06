@@ -1,50 +1,55 @@
 # Project Summary - Live Polling System
 
-## ✅ Completed Features
+## -> Completed Features
 
 ### Backend Implementation
-- ✅ Express.js server with TypeScript
-- ✅ MongoDB integration with Mongoose
-- ✅ Socket.io for real-time communication
-- ✅ Controller-Service architecture pattern
-- ✅ Poll, Vote, and Student models
-- ✅ State recovery endpoints
-- ✅ Timer synchronization logic
-- ✅ Race condition prevention (unique vote constraint)
-- ✅ Error handling and validation
+
+- -> Express.js server with TypeScript
+- -> MongoDB integration with Mongoose
+- -> Socket.io for real-time communication
+- -> Controller-Service architecture pattern
+- -> Poll, Vote, and Student models
+- -> State recovery endpoints
+- -> Timer synchronization logic
+- -> Race condition prevention (unique vote constraint)
+- -> Error handling and validation
 
 ### Frontend Implementation
-- ✅ React with TypeScript
-- ✅ React Router for navigation
-- ✅ Socket.io client integration
-- ✅ Custom hooks (`useSocket`, `usePollTimer`)
-- ✅ State recovery on page refresh
-- ✅ UI matching Figma design
-- ✅ Toast notifications for user feedback
-- ✅ LocalStorage for session persistence
+
+- -> React with TypeScript
+- -> React Router for navigation
+- -> Socket.io client integration
+- -> Custom hooks (`useSocket`, `usePollTimer`)
+- -> State recovery on page refresh
+- -> UI matching Figma design
+- -> Toast notifications for user feedback
+- -> LocalStorage for session persistence
 
 ### Core Features
-- ✅ Teacher persona: Create polls, view results, poll history
-- ✅ Student persona: Join polls, vote, view results
-- ✅ Real-time updates via Socket.io
-- ✅ Timer synchronization (server-side)
-- ✅ State recovery on refresh
-- ✅ Database persistence
-- ✅ One vote per student per poll enforcement
+
+- -> Teacher persona: Create polls, view results, poll history
+- -> Student persona: Join polls, vote, view results
+- -> Real-time updates via Socket.io
+- -> Timer synchronization (server-side)
+- -> State recovery on refresh
+- -> Database persistence
+- -> One vote per student per poll enforcement
 
 ### UI Components
-- ✅ Welcome page (role selection)
-- ✅ Student onboarding
-- ✅ Teacher onboarding
-- ✅ Student poll view (voting + results)
-- ✅ Teacher poll view (create + monitor)
-- ✅ Poll history page
-- ✅ Waiting screen
-- ✅ Loading states and error handling
+
+- -> Welcome page (role selection)
+- -> Student onboarding
+- -> Teacher onboarding
+- -> Student poll view (voting + results)
+- -> Teacher poll view (create + monitor)
+- -> Poll history page
+- -> Waiting screen
+- -> Loading states and error handling
 
 ## Architecture Highlights
 
 ### Backend Structure
+
 ```
 backend/src/
 ├── controllers/     # HTTP request handlers
@@ -56,6 +61,7 @@ backend/src/
 ```
 
 ### Frontend Structure
+
 ```
 frontend/src/
 ├── hooks/           # Custom React hooks
@@ -76,6 +82,7 @@ frontend/src/
 ## Design Compliance
 
 The UI follows the Figma design with:
+
 - Color palette: Purple (#7765DA), Blue (#5767D0), Dark Purple (#4F0DCE)
 - Gray shades: Light (#F2F2F2), Medium (#6E6E6E), Dark (#373737)
 - Component layouts matching the design mockups
@@ -105,9 +112,8 @@ The UI follows the Figma design with:
 
 ## Notes
 
-- The system ensures only one active poll at a time
-- Students are identified by unique IDs stored in localStorage
-- All polls are persisted in MongoDB
-- Timer is calculated server-side to prevent client manipulation
-- The system gracefully handles disconnections and reconnections
-
+- Only one poll can be active at a time
+- Students are identified using unique IDs stored in localStorage
+- All poll data is persisted in MongoDB
+- Timer logic is enforced server-side
+- The system handles client reconnections gracefully

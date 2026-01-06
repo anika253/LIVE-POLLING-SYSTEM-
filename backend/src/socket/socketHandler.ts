@@ -32,6 +32,9 @@ export const socketHandler = (io: Server): void => {
         socket.data.studentId = studentId;
         socket.data.role = 'student';
 
+        // Notify teacher about new student
+        io.emit('student:joined', { studentId, name: data.name });
+
         // Send current active poll if exists
         const activePoll = await pollService.getActivePoll();
         if (activePoll) {
