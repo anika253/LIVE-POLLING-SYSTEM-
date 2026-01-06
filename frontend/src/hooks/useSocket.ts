@@ -3,12 +3,17 @@ import { io, Socket } from "socket.io-client";
 
 const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || 'http://localhost:5000';
 
+// Debug: Log the socket URL being used
+console.log('Socket URL:', SOCKET_URL);
+console.log('REACT_APP_SOCKET_URL env var:', process.env.REACT_APP_SOCKET_URL);
+
 export const useSocket = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
+    console.log('Connecting to socket at:', SOCKET_URL);
     const newSocket = io(SOCKET_URL, {
       transports: ['websocket', 'polling'],
       reconnection: true,
