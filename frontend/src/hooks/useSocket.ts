@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
 
-const SOCKET_URL = process.env.FRONTEND_URL as string;
+const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || 'http://localhost:5000';
 
 export const useSocket = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
@@ -9,12 +9,8 @@ export const useSocket = () => {
   const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
-    if (!SOCKET_URL) {
-      return;
-    }
-
     const newSocket = io(SOCKET_URL, {
-      transports: ["websocket"],
+      transports: ['websocket', 'polling'],
       reconnection: true,
       reconnectionDelay: 1000,
       reconnectionAttempts: 5,
