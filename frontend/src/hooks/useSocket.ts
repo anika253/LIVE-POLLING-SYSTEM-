@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
 
-const SOCKET_URL = process.env.REACT_APP_SOCKET_URL as string;
+const SOCKET_URL = process.env.FRONTEND_URL as string;
 
 export const useSocket = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
