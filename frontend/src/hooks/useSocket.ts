@@ -10,7 +10,7 @@ export const useSocket = () => {
 
   useEffect(() => {
     if (!SOCKET_URL) {
-      console.error("REACT_APP_SOCKET_URL is not defined");
+      console.error(" not defined");
       return;
     }
 
