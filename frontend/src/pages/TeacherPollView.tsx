@@ -156,15 +156,17 @@ const TeacherPollView: React.FC = () => {
         <div className="header-right">
           <button
             onClick={() => setShowChat(!showChat)}
-            className="chat-button"
+            className={`chat-button ${showChat ? 'active' : ''}`}
             title="Open Chat"
+            type="button"
           >
             💬 Chat
           </button>
           <button
             onClick={() => setShowParticipants(!showParticipants)}
-            className="participants-button"
+            className={`participants-button ${showParticipants ? 'active' : ''}`}
             title="View Participants"
+            type="button"
           >
             👥 Participants
           </button>
@@ -288,6 +290,48 @@ const TeacherPollView: React.FC = () => {
           <button onClick={() => setShowCreatePoll(true)} className="create-first-poll-button">
             Create Poll
           </button>
+        </div>
+      )}
+
+      {/* Chat Popup */}
+      <ChatPopup isOpen={showChat} onClose={() => setShowChat(false)} isTeacher={true} />
+
+      {/* Participants Modal */}
+      {showParticipants && (
+        <div className="participants-overlay" onClick={() => setShowParticipants(false)}>
+          <div className="participants-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="participants-header">
+              <h3>Participants</h3>
+              <button className="participants-close" onClick={() => setShowParticipants(false)}>
+                ×
+              </button>
+            </div>
+            <div className="participants-list">
+              {participants.length === 0 ? (
+                <div className="no-participants">No participants yet</div>
+              ) : (
+                participants.map((participant) => (
+                  <div key={participant.studentId} className="participant-item">
+                    <span className="participant-name">{participant.name}</span>
+                    <button
+                      className="remove-participant-button"
+                      onClick={() => {
+                        if (socket && window.confirm(`Remove ${participant.name}?`)) {
+                          socket.emit('student:remove', { studentId: participant.studentId });
+                          setParticipants((prev) =>
+                            prev.filter((p) => p.studentId !== participant.studentId)
+                          );
+                          toast.success(`${participant.name} has been removed`);
+                        }
+                      }}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>

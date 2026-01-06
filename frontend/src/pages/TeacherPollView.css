@@ -1,25 +1,336 @@
-/* Add to existing TeacherPollView.css */
+/* Teacher Poll View Styles */
+
+.teacher-poll-container {
+  max-width: 1200px;
+}
+
+.teacher-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px 30px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-right {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
 .chat-button,
 .participants-button {
-  padding: 10px 20px;
+  padding: 12px 24px;
   font-size: 16px;
   font-weight: 600;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white;
+  background-color: white;
+  color: #7765DA;
   border: 2px solid white;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-right: 8px;
+  margin-right: 12px;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .chat-button:hover,
 .participants-button:hover {
-  background-color: white;
-  color: #7765DA;
+  background-color: #F8F7FF;
+  color: #6554c0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(119, 101, 218, 0.3);
+  border-color: #7765DA;
 }
 
+.chat-button:active,
+.participants-button:active {
+  transform: translateY(0);
+}
+
+.chat-button.active,
+.participants-button.active {
+  background-color: white !important;
+  color: #7765DA !important;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
+}
+
+.chat-button:disabled,
+.participants-button:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.history-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: white;
+  color: #7765DA;
+  border: 2px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-button:hover {
+  background-color: #F8F7FF;
+  color: #6554c0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(119, 101, 218, 0.3);
+  border-color: #7765DA;
+}
+
+.create-poll-section {
+  background: white;
+  border-radius: 16px;
+  padding: 50px 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #373737;
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.create-poll-section .form-group {
+  margin-bottom: 24px;
+}
+
+.create-poll-section .form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #373737;
+  margin-bottom: 8px;
+}
+
+.create-poll-section .form-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 2px solid #F2F2F2;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.create-poll-section .form-input:focus {
+  outline: none;
+  border-color: #7765DA;
+  box-shadow: 0 0 0 3px rgba(119, 101, 218, 0.1);
+}
+
+.option-input-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.option-input-group .form-input {
+  flex: 1;
+}
+
+.remove-option-button {
+  padding: 8px 16px;
+  font-size: 20px;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 40px;
+}
+
+.remove-option-button:hover {
+  background-color: #cc0000;
+}
+
+.add-option-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #F2F2F2;
+  color: #373737;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-option-button:hover {
+  background-color: #E0E0E0;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.create-button {
+  flex: 1;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #7765DA;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(119, 101, 218, 0.3);
+}
+
+.create-button:hover {
+  background-color: #6554c0;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(119, 101, 218, 0.5);
+}
+
+.create-button:active {
+  transform: translateY(-1px);
+}
+
+.cancel-button {
+  flex: 1;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #F2F2F2;
+  color: #373737;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-button:hover {
+  background-color: #E0E0E0;
+  transform: translateY(-2px);
+}
+
+.teacher-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.end-poll-button {
+  flex: 1;
+  min-width: 150px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+}
+
+.end-poll-button:hover {
+  background-color: #cc0000;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 68, 68, 0.5);
+}
+
+.new-question-button {
+  flex: 1;
+  min-width: 150px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #7765DA;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(119, 101, 218, 0.3);
+}
+
+.new-question-button:hover:not(:disabled) {
+  background-color: #6554c0;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(119, 101, 218, 0.5);
+}
+
+.new-question-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.no-poll-section {
+  background: white;
+  border-radius: 16px;
+  padding: 80px 40px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+.no-poll-text {
+  font-size: 22px;
+  color: #6E6E6E;
+  margin-bottom: 40px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.create-first-poll-button {
+  padding: 16px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #7765DA;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(119, 101, 218, 0.3);
+  min-width: 200px;
+}
+
+.create-first-poll-button:hover {
+  background-color: #6554c0;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(119, 101, 218, 0.5);
+}
+
+.create-first-poll-button:active {
+  transform: translateY(-1px);
+}
+
+/* Participants Modal */
 .participants-overlay {
   position: fixed;
   top: 0;
@@ -157,11 +468,58 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .teacher-header {
+    margin-bottom: 25px;
+    padding: 16px 20px;
+  }
+
   .chat-button,
   .participants-button {
     padding: 8px 16px;
     font-size: 14px;
     margin-right: 6px;
+  }
+
+  .create-poll-section {
+    padding: 30px 25px;
+  }
+
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+
+  .create-poll-section .form-group {
+    margin-bottom: 20px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .create-button,
+  .cancel-button {
+    width: 100%;
+  }
+
+  .teacher-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .end-poll-button,
+  .new-question-button {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .no-poll-section {
+    padding: 40px 30px;
+  }
+
+  .no-poll-text {
+    font-size: 18px;
   }
 
   .participants-modal {
@@ -170,16 +528,104 @@
 }
 
 @media (max-width: 480px) {
+  .teacher-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 16px;
+  }
+
+  .header-left {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .header-right {
-    flex-wrap: wrap;
-    gap: 8px;
+    width: 100%;
+    flex-direction: column;
   }
 
   .chat-button,
-  .participants-button {
-    flex: 1;
-    min-width: 100px;
+  .participants-button,
+  .history-button {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
     margin-right: 0;
+    margin-bottom: 8px;
+  }
+
+  .create-poll-section {
+    padding: 25px 20px;
+    border-radius: 10px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .create-poll-section .form-group label {
+    font-size: 13px;
+  }
+
+  .create-poll-section .form-input {
+    padding: 12px 14px;
+    font-size: 16px;
+  }
+
+  .option-input-group {
+    flex-wrap: wrap;
+  }
+
+  .remove-option-button {
+    padding: 10px 14px;
+    font-size: 18px;
+    min-width: 44px;
+  }
+
+  .add-option-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .button-group {
+    margin-top: 25px;
+  }
+
+  .create-button,
+  .cancel-button {
+    padding: 12px;
+    font-size: 15px;
+    min-height: 48px;
+  }
+
+  .teacher-actions {
+    margin-top: 25px;
+  }
+
+  .end-poll-button,
+  .new-question-button {
+    padding: 12px;
+    font-size: 15px;
+    min-height: 48px;
+  }
+
+  .no-poll-section {
+    padding: 30px 20px;
+    border-radius: 10px;
+  }
+
+  .no-poll-text {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
+
+  .create-first-poll-button {
+    padding: 12px 24px;
+    font-size: 16px;
+    width: 100%;
   }
 
   .participants-modal {
@@ -204,5 +650,18 @@
 
   .remove-participant-button {
     width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .section-title {
+    font-size: 16px;
+  }
+
+  .create-button,
+  .cancel-button,
+  .end-poll-button,
+  .new-question-button {
+    font-size: 14px;
   }
 }

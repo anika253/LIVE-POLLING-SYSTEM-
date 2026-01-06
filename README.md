@@ -1,8 +1,16 @@
 # Live Polling System
 
-A resilient live polling system built with React, Node.js, Socket.io, and MongoDB. This system supports two personas: Teacher (Admin) and Student, with real-time polling capabilities and state recovery.
+A real-time polling application built using React, Node.js, Socket.io, and MongoDB. The system supports two roles: Teacher (Admin) and Student, and focuses on reliable real-time updates, server-controlled timers, and smooth state recovery during refreshes or reconnections.
+
+This project was built to understand how real-time applications behave under common edge cases such as late joins, page refreshes, and duplicate actions, while keeping the backend as the single source of truth.
 
 ## Features
+
+Teachers can create polls with a question, multiple options, and a configurable timer (up to 60 seconds). They can view live voting results, manually end polls, and access the history of previously conducted polls. The system ensures that only one poll can be active at any given time.
+
+Students enter their name on first visit and instantly receive questions when a poll is created. The poll timer remains synchronized even if a student joins late. Students can submit one vote per poll and view live results after voting or once the poll ends.
+
+The system is designed to be resilient. If a teacher or student refreshes the page during an active poll, the application restores the current state from the backend and continues without restarting the poll. Duplicate voting is prevented at the database level, and all critical logic such as timers and vote counting is handled on the server.
 
 ### Teacher Persona (Admin)
 
