@@ -1,10 +1,11 @@
-# Live Polling System - Intervue.io Assignment
+# Live Polling System
 
 A resilient live polling system built with React, Node.js, Socket.io, and MongoDB. This system supports two personas: Teacher (Admin) and Student, with real-time polling capabilities and state recovery.
 
 ## Features
 
 ### Teacher Persona (Admin)
+
 - Create polls with questions, options, and configurable timer (max 60 seconds)
 - View real-time polling results as students vote
 - View poll history with aggregate results
@@ -12,6 +13,7 @@ A resilient live polling system built with React, Node.js, Socket.io, and MongoD
 - Create new polls only when previous poll is ended or no active poll exists
 
 ### Student Persona (User)
+
 - Enter name on first visit (unique per session/tab)
 - Receive questions instantly when teacher asks them
 - Synchronized timer that adjusts if joining late
@@ -19,6 +21,7 @@ A resilient live polling system built with React, Node.js, Socket.io, and MongoD
 - View live polling results after submission
 
 ### System Resilience
+
 - **State Recovery**: If Teacher or Student refreshes during an active poll, the application fetches current state from backend and resumes exactly where it left off
 - **Race Condition Prevention**: Students cannot vote more than once per question, even with API spam or client-side manipulation
 - **Database Persistence**: All polls, options, and votes are stored in MongoDB
@@ -62,12 +65,14 @@ live_polling_system/
 ## Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd live_polling_system
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm run install:all
    ```
@@ -75,6 +80,7 @@ live_polling_system/
 3. **Set up environment variables**
 
    Create `backend/.env` file:
+
    ```env
    PORT=5000
    MONGODB_URI=mongodb://localhost:27017/live_polling
@@ -83,6 +89,7 @@ live_polling_system/
    ```
 
    Create `frontend/.env` file (optional):
+
    ```env
    REACT_APP_SOCKET_URL=http://localhost:5000
    REACT_APP_API_URL=http://localhost:5000
@@ -96,6 +103,7 @@ live_polling_system/
 ### Development Mode
 
 Run both frontend and backend concurrently:
+
 ```bash
 npm run dev
 ```
@@ -103,24 +111,28 @@ npm run dev
 Or run them separately:
 
 **Backend:**
+
 ```bash
 cd backend
 npm run dev
 ```
 
 **Frontend:**
+
 ```bash
 cd frontend
 npm start
 ```
 
 The application will be available at:
+
 - Frontend: http://localhost:3000
 - Backend: http://localhost:5000
 
 ## Usage
 
 1. **As a Teacher:**
+
    - Navigate to the welcome page
    - Click "I'm a Teacher"
    - Enter your name and poll name
@@ -139,12 +151,14 @@ The application will be available at:
 ## Architecture Highlights
 
 ### Backend Architecture
+
 - **Separation of Concerns**: Business logic is separated from routes and socket handlers
 - **Controller-Service Pattern**: Controllers handle HTTP requests, Services contain business logic
 - **Repository Pattern**: Data access is abstracted through repositories
 - **Error Handling**: Comprehensive error handling with user-friendly messages
 
 ### Frontend Architecture
+
 - **Custom Hooks**: `useSocket` for socket connection management, `usePollTimer` for timer synchronization
 - **State Management**: Local state with React hooks, localStorage for persistence
 - **Optimistic UI**: Immediate UI updates with error rollback
@@ -161,6 +175,7 @@ The application will be available at:
 ## Socket Events
 
 ### Client to Server
+
 - `student:join` - Student joins the system
 - `teacher:join` - Teacher joins the system
 - `poll:create` - Create a new poll
@@ -169,6 +184,7 @@ The application will be available at:
 - `state:request` - Request current state (for recovery)
 
 ### Server to Client
+
 - `student:registered` - Student registration confirmation
 - `poll:created` - New poll created
 - `poll:active` - Active poll available
@@ -181,6 +197,7 @@ The application will be available at:
 ## Testing State Recovery
 
 1. **Teacher Recovery:**
+
    - Create a poll as teacher
    - Refresh the browser
    - The poll should still be visible with correct timer
@@ -195,7 +212,9 @@ The application will be available at:
 ## Deployment
 
 ### Backend Deployment
+
 1. Build the TypeScript code:
+
    ```bash
    cd backend
    npm run build
@@ -209,7 +228,9 @@ The application will be available at:
    ```
 
 ### Frontend Deployment
+
 1. Build the React app:
+
    ```bash
    cd frontend
    npm run build
@@ -226,8 +247,3 @@ The application will be available at:
 - Timer synchronization is handled server-side
 - All data is persisted in MongoDB
 - UI follows the provided Figma design specifications
-
-## License
-
-This project is created for Intervue.io SDE Intern Assignment.
-

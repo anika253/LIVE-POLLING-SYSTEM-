@@ -18,6 +18,9 @@ const TeacherPollView: React.FC = () => {
   const [options, setOptions] = useState(['', '']);
   const [duration, setDuration] = useState(60);
   const [questionNumber, setQuestionNumber] = useState(1);
+  const [showChat, setShowChat] = useState(false);
+  const [showParticipants, setShowParticipants] = useState(false);
+  const [participants, setParticipants] = useState<Array<{ studentId: string; name: string }>>([]);
 
   const { timeLeft, start, reset, formatTime } = usePollTimer(0);
 
@@ -63,6 +66,19 @@ const TeacherPollView: React.FC = () => {
           reset(0);
         }
       }
+    });
+
+    socket.on('student:joined', (data: { studentId: string; name: string }) => {
+      setParticipants((prev) => {
+        if (prev.find((p) => p.studentId === data.studentId)) {
+          return prev;
+        }
+        return [...prev, { studentId: data.studentId, name: data.name }];
+      });
+    });
+
+    socket.on('student:removed', (data: { studentId: string }) => {
+      setParticipants((prev) => prev.filter((p) => p.studentId !== data.studentId));
     });
 
     socket.on('error', (data: { message: string }) => {
@@ -138,6 +154,20 @@ const TeacherPollView: React.FC = () => {
           {pollState.poll && timeLeft > 0 && <div className="timer">{formatTime()}</div>}
         </div>
         <div className="header-right">
+          <button
+            onClick={() => setShowChat(!showChat)}
+            className="chat-button"
+            title="Open Chat"
+          >
+            💬 Chat
+          </button>
+          <button
+            onClick={() => setShowParticipants(!showParticipants)}
+            className="participants-button"
+            title="View Participants"
+          >
+            👥 Participants
+          </button>
           <button
             onClick={() => navigate('/teacher/history')}
             className="history-button"
