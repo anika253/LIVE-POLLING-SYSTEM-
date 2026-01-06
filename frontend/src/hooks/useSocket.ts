@@ -10,7 +10,6 @@ export const useSocket = () => {
 
   useEffect(() => {
     if (!SOCKET_URL) {
-      console.error(" not defined");
       return;
     }
 
